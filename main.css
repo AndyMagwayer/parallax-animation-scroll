@@ -1,63 +1,136 @@
-body,
-html{
-      margin: 0;
-      padding: 0;
-      height: 100%;
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-body::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-body {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-
-svg {
-      display: block;
-      width: 100%;
-      height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-}
+:root {
+    --duration: 2.8s;
+  }
+  .old-page {
+    position: absolute;
+    inset: 0;
+    background: url("https://assets.codepen.io/907471/science-fiction-room-2_1.png?v42")
+      center center no-repeat;
+    background-size: cover;
+    transform: scale(1.5);
   
-.scrollElement {
-      position: absolute;
-      height: 6000px;
-      width: 100px;
-      top: 0;
-      z-index: 0;
-}
-
-  .btn {
-      position: fixed;
-      bottom: 5%;
-      right: 0px;
-      transform: translateX(-50%);
-      border: 1px solid #fff;
-      border-radius: 5px;
-      font-size: 0.9rem;
-      padding: 0.5rem 0.7em;
-      background-color: transparent;
-      color: #ffffff;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      cursor: pointer;
-      transition: all .3s;
-      z-index: 11;
+    @media (orientation: portrait) {
+      mask: url("https://assets.codepen.io/907471/tail.svg?v1") center top
+          no-repeat,
+        url("https://assets.codepen.io/907471/space.svg?v42") center center
+          no-repeat,
+        url("https://assets.codepen.io/907471/ncc1701.svg") center center
+          no-repeat;
+      mask-repeat: no-repeat;
+      mask-size: 10rem 20rem, 300% 300%, 100% 30%;
+      animation: hide-view-portrait var(--duration)
+        cubic-bezier(0.975, -0.005, 0, 1.02) infinite forwards;
+    }
+  
+    @media (orientation: landscape) {
+      mask: url("https://assets.codepen.io/907471/tail.svg?v1") center top
+          no-repeat,
+        url("https://assets.codepen.io/907471/space-landscape.svg?v4") center
+          center no-repeat,
+        url("https://assets.codepen.io/907471/ncc1701.svg") center center
+          no-repeat;
+      mask-repeat: no-repeat;
+      mask-size: 10rem 30rem, 500% 500%, 100% 30%;
+      animation: hide-view-landscape var(--duration)
+        cubic-bezier(0.975, -0.005, 0, 1.02) infinite forwards;
+      @media (max-height: 300px) {
+        mask-size: 10rem 10rem, 500% 500%, 100% 30%;
+      }
+    }
   }
-
-  .btn_works {
-      left: 100px;
-      right: unset;
-      text-decoration: none;
+  
+  @keyframes hide-view-portrait {
+    from {
+      mask-position: 50% 120%, 50% 0%, 50% 150%;
+      transform: scale(1.5);
+    }
+  
+    45% {
+      transform: scale(1);
+    }
+    50% {
+      mask-position: 50% 120%, 50% 80%, 50% 60%;
+    }
+  
+    80% {
+      mask-position: 50% -60%, 50% 140%, 50% -70%;
+    }
+  
+    to {
+      mask-position: 50% -60%, 50% 140%, 50% -70%;
+      transform: scale(1);
+    }
   }
-
-  .btn:hover {
-      background: #ffffff;
-      color: #1B1734;
+  
+  @keyframes hide-view-landscape {
+    from {
+      mask-position: 50% 120%, 50% 0%, 50% 150%;
+      transform: scale(1.5);
+    }
+  
+    45% {
+      transform: scale(1);
+    }
+    50% {
+      mask-position: 50% 120%, 50% 72%, 50% 60%;
+    }
+  
+    80% {
+      mask-position: 50% -80%, 50% 140%, 50% -70%;
+    }
+  
+    to {
+      mask-position: 50% -80%, 50% 140%, 50% -70%;
+      transform: scale(1);
+    }
   }
+  
+  .new-page {
+    position: absolute;
+    inset: 0;
+    background: url("https://assets.codepen.io/907471/science-fiction-room_1.png?v42")
+        center center no-repeat,
+      #111;
+    background-size: cover;
+    animation: show var(--duration) cubic-bezier(0.975, -0.005, 0, 1.02) infinite
+      forwards;
+  }
+  
+  @keyframes show {
+    from {
+      filter: saturate(0%);
+      opacity: 0.4;
+    }
+    40% {
+      filter: saturate(0%);
+      opacity: 0.4;
+    }
+    80% {
+      filter: saturate(100%);
+      opacity: 1;
+    }
+  
+    to {
+      filter: saturate(100%);
+    }
+  }
+  
+  body {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    color: #ca5600;
+    background: black;
+    overflow: hidden;
+  }
+  
+  .labs-follow-me {
+    transform: scale(0.8) !important;
+  }
+  
+  :root {
+    @media screen and (max-height: 800px) {
+      font-size: 8px;
+    }
+  }
+  
